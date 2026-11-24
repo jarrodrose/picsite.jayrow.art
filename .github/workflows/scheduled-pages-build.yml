@@ -1,0 +1,25 @@
+name: Scheduled GitHub Pages Build
+
+on:
+  schedule:
+    - cron: '1 0 * * *'
+      timezone: 'Australia/Melbourne'
+  workflow_dispatch:
+
+permissions:
+  pages: write
+
+jobs:
+  trigger-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request a GitHub Pages build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GITHUB_TOKEN" \
+            --header "X-GitHub-Api-Version: 2026-03-10" \
+            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pages/builds"
