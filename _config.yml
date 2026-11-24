@@ -1,38 +1,24 @@
 # Site-wide settings
 # ------------------
 #
+timezone: Australia/Melbourne
 title: picsite Gallery Test
-#
 author:
   name: JR
-#   email: your-email@domain.com
-#
-# The `>` after `description:` means to ignore line-breaks until next key. If
-#   you wish to omit the line-break after the end of text, use `>-` instead.
+#  email: your-email@domain.com
 description: >
   This site is the first test in making a better layout and generator for a
   gallery style site using jekyll to automatically add images to a page that
   contains the metadata for the gallery section in question
 
-
 # Build settings
-# --------------
-#
-# If you wish to use the gem-version of Minima with or without a Gemfile, use
-#   the following setting:
-# theme: minima
-#
-# **OR** if you wish to use the theme directly from the GitHub repository by
-#   bypassing a Gemfile, use the following setting instead.
-#   It is best that you lock to a particular commit and update if upstream changes
-#   do not affect your site adversely.
 remote_theme: jekyll/minima
-#
+
 # Minima requires the following plugins:
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
-#
+
 # Uncomment the following setting if you wish to disable deprecation warnings
 #   from newer versions of sass converter. Adapt as required.
 # sass:
