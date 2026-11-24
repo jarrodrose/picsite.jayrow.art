@@ -6,4 +6,4 @@ extensions:
   - jpg
   - png
 ---
-Photos from our family trip.
+Photos from our family trip..
