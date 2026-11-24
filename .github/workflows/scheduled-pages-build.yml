@@ -2,7 +2,7 @@ name: Scheduled GitHub Pages Build
 
 on:
   schedule:
-    - cron: '1 0 * * *'
+    - cron: '17 0,10 * * *'
       timezone: 'Australia/Melbourne'
   workflow_dispatch:
 
