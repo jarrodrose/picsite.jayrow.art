@@ -1,4 +1,17 @@
-{% assign folder = include.folder | remove_first: "/" | remove_last: "/" %}
+{% assign folder = include.folder | default: "" %}
+
+{% assign first_character = folder | slice: 0, 1 %}
+{% if first_character == "/" %}
+  {% assign folder_length = folder | size | minus: 1 %}
+  {% assign folder = folder | slice: 1, folder_length %}
+{% endif %}
+
+{% assign last_character = folder | slice: -1, 1 %}
+{% if last_character == "/" %}
+  {% assign folder_length = folder | size | minus: 1 %}
+  {% assign folder = folder | slice: 0, folder_length %}
+{% endif %}
+
 {% assign folder_prefix = "/assets/images/" | append: folder | append: "/" %}
 
 {% if include.extensions %}
