@@ -1,3 +1,8 @@
+{% comment %}
+  Formats and creates folder variable making sure it will work and isn't domain relative
+  It does this so far by checking if the first or last character is a '/'
+  I hate this code by it does prevent mistakes by future me
+{% endcomment %}
 {% assign folder = include.folder | default: "" %}
 
 {% assign first_character = folder | slice: 0, 1 %}
@@ -12,14 +17,23 @@
   {% assign folder = folder | slice: 0, folder_length %}
 {% endif %}
 
+{% comment %}
+  This appends the image store location to the folder request
+{% endcomment %}
 {% assign folder_prefix = "/assets/images/" | append: folder | append: "/" %}
 
+{% comment %}
+  This filters by a default set of extensions or by the provided set if in the .md file  
+{% endcomment %}
 {% if include.extensions %}
   {% assign extensions = include.extensions | join: "," | downcase | split: "," %}
 {% else %}
   {% assign extensions = "jpg,jpeg,png,gif,webp,avif,svg" | split: "," %}
 {% endif %}
 
+{% comment %}
+  Begin actual html code area  
+{% endcomment %}
 <div class="image-gallery">
   {% assign image_count = 0 %}
 
