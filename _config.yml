@@ -1,6 +1,7 @@
 # Site-wide settings
 # ------------------
-#
+
+future: false
 timezone: Australia/Melbourne
 title: picsite Gallery Test
 author:
