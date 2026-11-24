@@ -1,0 +1,37 @@
+{% assign folder = include.folder | remove_first: "/" | remove_last: "/" %}
+{% assign folder_prefix = "/assets/images/" | append: folder | append: "/" %}
+
+{% if include.extensions %}
+  {% assign extensions = include.extensions | join: "," | downcase | split: "," %}
+{% else %}
+  {% assign extensions = "jpg,jpeg,png,gif,webp,avif,svg" | split: "," %}
+{% endif %}
+
+<div class="image-gallery">
+  {% assign image_count = 0 %}
+
+  {% for file in site.static_files %}
+    {% assign file_extension = file.name | split: "." | last | downcase %}
+    {% assign in_folder = file.path | slice: 0, folder_prefix.size %}
+
+    {% if in_folder == folder_prefix %}
+      {% for extension in extensions %}
+        {% assign extension = extension | strip | remove_first: "." %}
+        {% if file_extension == extension %}
+          {% assign image_count = image_count | plus: 1 %}
+          <a class="image-gallery__item"
+             href="{{ file.path | relative_url }}">
+            <img src="{{ file.path | relative_url }}"
+                 alt="{{ file.name | split: "." | first | replace: "-", " " | replace: "_", " " | escape }}"
+                 loading="lazy">
+          </a>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if image_count == 0 %}
+    <p>No images found in <code>{{ folder | escape }}</code>.</p>
+  {% endif %}
+</div>
